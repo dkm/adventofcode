@@ -21,6 +21,8 @@ fn main() -> io::Result<()> {
     let file = io::stdin();
     let reader = BufReader::new(file);
     let mut prio_count = 0u32;
+    let mut group : Vec<String> = Vec::new();
+    let mut p2_acc = 0u32;
 
     for line in reader.lines() {
         let l = line.unwrap();
@@ -33,11 +35,28 @@ fn main() -> io::Result<()> {
         println!("shared len: {}, {:?}", shared.len(), shared);
 
         prio_count = prio_count + shared.iter().map(|m| get_prio(*m)).sum::<u32>();
+        group.push(l);
+
+        if group.len() == 3 {
+            let inter = group
+                .iter()
+                .skip(1)
+                .fold(group[0].chars().collect::<HashSet<_>>().clone(), |acc, hs| {
+                    acc.intersection(&hs.chars().collect::<HashSet<_>>()).cloned().collect()
+                });
+
+            println!("inter {}", inter.len());
+            if (inter.len() != 1) {panic!()};
+            for i in inter {
+                p2_acc = p2_acc + get_prio(i);
+            }
+            group.clear();
+        }
 
     }
     println!("part 1 : {}", prio_count);
-
+    println!("part 2 : {}", p2_acc);
     Ok(())
 }
 // part 1 : 8493
-// part 2 :
+// part 2 : 2552
