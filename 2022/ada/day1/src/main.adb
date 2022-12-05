@@ -1,3 +1,5 @@
+--  see it live in https://godbolt.org/z/M67e7h8qs and https://godbolt.org/z/azWdPePM6
+
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 

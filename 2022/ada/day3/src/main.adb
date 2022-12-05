@@ -1,3 +1,4 @@
+--  see it live in https://godbolt.org/z/YMPavr6KP
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 
